@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import {Nav, Navbar, Container} from 'react-bootstrap';
 import logo from '../../../assets/images/logo.png';
+import DayNightToggle from 'react-day-and-night-toggle'
+import { useState } from 'react';
 
 const Header = () => {
+    const [isDarkMode, setIsDarkMode] = useState(false)
     return (
         <Navbar className='bg-success sticky fixed-top' expand="md">  
             <Container>  
@@ -14,6 +17,12 @@ const Header = () => {
                     <Nav.Link className='text-light' as={Link} to='/courses'>Courses</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/faq'>FAQ</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/blog'>Blog</Nav.Link>
+                    <Nav.Link>
+                    <DayNightToggle
+                        onChange={() => setIsDarkMode(!isDarkMode)}
+                        checked={isDarkMode}
+                        />
+                    </Nav.Link>
                 </Nav>
                 {/* <div className='d-flex'>
                     {
