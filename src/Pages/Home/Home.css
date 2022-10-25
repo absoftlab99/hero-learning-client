@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.cover{
+    background-image: url('../../assets/images/cover.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 350px;
+}
+.ff-poppins{
+    font-family: 'Poppins', sans-serif;
+}
