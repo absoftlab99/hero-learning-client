@@ -1,0 +1,4 @@
+.course:hover{
+    border: 1px solid #28a745 !important;
+    transition: 0.4s;
+}
