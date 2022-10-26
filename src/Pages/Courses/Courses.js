@@ -1,9 +1,12 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useLoaderData } from 'react-router-dom';
 import LeftSideNav from '../../Pages/Shaerd/LeftSideNav/LeftSideNav';
 import CourseCard from '../Shaerd/CourseCard/CourseCard';
+import './Courses.css';
 
 const Courses = () => {
+    const courses = useLoaderData();
     return (
         <div className='mt-5'>
             <Container>
@@ -13,8 +16,13 @@ const Courses = () => {
                     </Col>
                     <Col lg='8'>
                         <Row>
-                            <Col lg='6'><CourseCard></CourseCard></Col>
-                            <Col lg='6'><CourseCard></CourseCard></Col>
+                            {
+                                courses.map(course =>
+                                    <Col lg='6' key={course.course_id}><CourseCard
+                                    course={course}
+                                    ></CourseCard></Col>    
+                                )
+                            }
                         </Row>
                     </Col>
                 </Row>

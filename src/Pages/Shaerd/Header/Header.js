@@ -17,6 +17,8 @@ const Header = () => {
                     <Nav.Link className='text-light' as={Link} to='/courses'>Courses</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/faq'>FAQ</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/blog'>Blog</Nav.Link>
+                    <Nav.Link className='text-light' as={Link} to='/register'>Register</Nav.Link>
+                    <Nav.Link className='text-light' as={Link} to='/login'>Login</Nav.Link>
                     <Nav.Link>
                     <DayNightToggle
                         onChange={() => setIsDarkMode(!isDarkMode)}

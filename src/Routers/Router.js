@@ -6,19 +6,24 @@ import FAQ from '../Pages/FAQ/FAQ';
 import Courses from '../Pages/Courses/Courses';
 import Error from '../Pages/Error/Error';
 import CourseDetails from '../Pages/CourseDetails/CourseDetails';
+import Register from "../Pages/Register/Register";
+import Login from "../Pages/Login/Login";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        loader: () => fetch("https://hero-learning-server.vercel.app/categories"),
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch("https://hero-learning-server.vercel.app/course")
             },
             {
                 path: '/home',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch("https://hero-learning-server.vercel.app/course")
             },
             {
                 path: '/blog',
@@ -30,11 +35,20 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses',
-                element: <Courses></Courses>
+                element: <Courses></Courses>,
+                loader: () => fetch("https://hero-learning-server.vercel.app/course")
             },
             {
                 path: '/course-details',
                 element: <CourseDetails></CourseDetails>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
             },
             {
                 path: '*',

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import CourseCard from '../../Pages/Shaerd/CourseCard/CourseCard';
 import './Home.css';
 import { FaBootstrap, FaCss3, FaHtml5, FaJava, FaPython, FaReact } from 'react-icons/fa';
 
 
 const Home = () => {
+    const courses = useLoaderData();
     return (
         <>
         <div className='cover'>
@@ -50,15 +51,15 @@ const Home = () => {
 
             <div className="row mt-5">
                 <h2 className='ff-poppins fw-bolder'>Top Courses</h2>
-                <div className="col-4">
-                    <CourseCard></CourseCard>
-                </div>
-                <div className="col-4">
-                    <CourseCard></CourseCard>   
-                </div>
-                <div className="col-4">
-                    <CourseCard></CourseCard>
-                </div>
+                {
+                    courses.map(course =>
+                    <div className="col-4" key={course.course_id}>
+                        <CourseCard
+                        course = {course}
+                        ></CourseCard>
+                    </div>    
+                    )
+                }
             </div>
         </div>
         </>
