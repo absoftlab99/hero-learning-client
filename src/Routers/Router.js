@@ -39,8 +39,9 @@ export const router = createBrowserRouter([
                 loader: () => fetch("https://hero-learning-server.vercel.app/course")
             },
             {
-                path: '/course-details',
-                element: <CourseDetails></CourseDetails>
+                path: '/course/:id',
+                element: <CourseDetails></CourseDetails>,
+                loader: ({params}) => fetch(`https://hero-learning-server.vercel.app/course/${params.id}`)
             },
             {
                 path: '/register',

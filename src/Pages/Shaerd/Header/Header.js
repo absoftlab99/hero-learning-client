@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom';
-import {Nav, Navbar, Container} from 'react-bootstrap';
+import {Nav, Navbar, Container, Button, Image} from 'react-bootstrap';
 import logo from '../../../assets/images/logo.png';
 import DayNightToggle from 'react-day-and-night-toggle'
 import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/UserContext';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
+    const {user, logOut} = useContext(AuthContext);
+    console.log(user);
     const [isDarkMode, setIsDarkMode] = useState(false);
+
+    const signOutHandler = () =>{
+        logOut();
+    }
+    console.log(user);
     return (
         <Navbar className='bg-success sticky fixed-top' expand="md">  
             <Container>  
@@ -17,8 +27,23 @@ const Header = () => {
                     <Nav.Link className='text-light' as={Link} to='/courses'>Courses</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/faq'>FAQ</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/blog'>Blog</Nav.Link>
-                    <Nav.Link className='text-light' as={Link} to='/register'>Register</Nav.Link>
-                    <Nav.Link className='text-light' as={Link} to='/login'>Login</Nav.Link>
+                    {
+                        user ? <Button onClick={signOutHandler} variant='danger'>Log Out</Button> :
+                        <>
+                            <Nav.Link className='text-light' as={Link} to='/register'>Register</Nav.Link>
+                            <Nav.Link className='text-light' as={Link} to='/login'>Login</Nav.Link>
+                        </>
+                    }
+
+                    <div className='d-flex align-items-center'>
+                        {
+                            user?.uid ? 
+                            <Image data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" className='ps-3' roundedCircle style={{height:45}} src={user?.photoURL}></Image> :
+                            <FaUserCircle className='display-6 text-warning'></FaUserCircle>
+                            
+                        }
+                    </div>
+                    
                     <Nav.Link>
                     <DayNightToggle
                         onChange={() => setIsDarkMode(!isDarkMode)}
@@ -26,18 +51,6 @@ const Header = () => {
                         />
                     </Nav.Link>
                 </Nav>
-                {/* <div className='d-flex'>
-                    {
-                        user?.uid ? 
-                        <Image className='ps-3' roundedCircle style={{height:45}} src={user?.photoURL}></Image> :
-                        <Image className='ps-3' roundedCircle style={{height:45}} src={avater}></Image>
-                        
-                    }
-                    <div className="ps-2 text-light">
-                        <p className='mb-0'>{user?.displayName}</p>
-                        <small>{user?.email}</small>
-                    </div>
-                </div> */}
             </Navbar.Collapse> 
             </Container>  
         </Navbar>

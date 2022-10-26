@@ -4,8 +4,11 @@ import { FaDownload } from 'react-icons/fa';
 import LeftSideNav from '../../Pages/Shaerd/LeftSideNav/LeftSideNav';
 import courseImg from '../../assets/images/tailwind.jpg';
 import './CourseDetails.css';
+import { useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
+    const {course} = useLoaderData();
+    console.log(course);
     return (
         <div className='mt-5'>
             <Container>

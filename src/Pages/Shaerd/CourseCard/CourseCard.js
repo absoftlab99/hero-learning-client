@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import './CourseCard.css';
 
 const CourseCard = ({course}) => {
-    const {course_name, full_img, instructor, price, ratings, category} = course;
+    const {course_id, course_name, full_img, instructor, price, ratings, category} = course;
     return (
         <div>
         <Card className='border border-success border-opacity-25 course mt-3'>
@@ -24,7 +25,7 @@ const CourseCard = ({course}) => {
             </div>
             <Card.Title className="text-start ff-poppins">{course_name}</Card.Title>
             <div className="d-flex">
-                <button className="btn btn-outline-success w-25">Details</button>
+                <Link as={Link} to={`/course/${course_id}`} className="btn btn-outline-success w-25">Details</Link>
             </div>
             <div className="d-flex mt-4">
                 <div className="release bg-success bg-opacity-25 p-2 rounded">
