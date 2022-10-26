@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 
 const Register = () => {
-    const {createUser, user, setUser, error, setError} = useContext(AuthContext);
+    const {createUser, user, setUser, error, setError, emailVerfy} = useContext(AuthContext);
     
     const handleRegister = event =>{
         event.preventDefault();
@@ -23,6 +23,7 @@ const Register = () => {
             setError('');
             console.log(user);
             form.reset();
+            emailVerfy()
         })
         .catch(error =>{
             console.error(error);
