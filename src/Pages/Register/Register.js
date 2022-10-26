@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, user, setUser, error, setError} = useContext(AuthContext);
     
     const handleRegister = event =>{
         event.preventDefault();
@@ -19,11 +19,14 @@ const Register = () => {
         createUser(email, password, name, photo)
         .then(result =>{
             const user = result.user;
+            setUser(user);
+            setError('');
             console.log(user);
             form.reset();
         })
         .catch(error =>{
             console.error(error);
+            setError(error.message);
         })
     }
     
@@ -51,11 +54,15 @@ const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control  className='border-success border-opacity-50' name='password' type="password" placeholder="Password" required/>
             </Form.Group>
-            {/* {
-                error?
+            {
+                error ?
                 <p className='alert alert-danger'>{error}</p> :
                 ''
-            } */}
+            }
+            {
+                !error && user ? <p className='alert alert-warning'>Check Your Email Inbox/Spam Folder for Verify Email</p> :
+                ''
+            }
             <Button variant="outline-success" type="submit">
                 Sign Up
             </Button><br></br>

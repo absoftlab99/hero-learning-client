@@ -4,11 +4,9 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/UserContext';
-import { useState } from 'react';
 
 const Login = () => {
-    const [error, setError] = useState('');
-    const {signInUser, user, setUser} = useContext(AuthContext);
+    const {signInUser, user, setUser, error, setError} = useContext(AuthContext);
 
     const signInHandler = event => {
         event.preventDefault();
@@ -19,7 +17,7 @@ const Login = () => {
         signInUser(email, password)
         .then(result =>{
             const user = result.user;
-            setUser(user)
+            setUser(user);
             setError('');
             console.log(user);
             console.log('login successfully');

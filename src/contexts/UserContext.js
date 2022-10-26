@@ -9,6 +9,7 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const UserContext = ({children}) => {
+    const [error, setError] = useState('');
     const [user, setUser] = useState(null);
     const createUser = (email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password);
@@ -18,7 +19,7 @@ const UserContext = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const authInfo = {createUser, signInUser, user, setUser}
+    const authInfo = {createUser, signInUser, user, setUser, error, setError}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>
