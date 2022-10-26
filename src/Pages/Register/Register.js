@@ -4,10 +4,14 @@ import Form from 'react-bootstrap/Form';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Register = () => {
-    const {createUser, user, setUser, error, setError, emailVerfy} = useContext(AuthContext);
+    const {createUser, user, setUser, error, setError, emailVerfy, gogolePopUp, githubPopUp} = useContext(AuthContext);
     
+    const provider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
+
     const handleRegister = event =>{
         event.preventDefault();
         const form = event.target;
@@ -28,6 +32,28 @@ const Register = () => {
         .catch(error =>{
             console.error(error);
             setError(error.message);
+        })
+    }
+    const googleSingIn = (event) =>{
+        event.preventDefault();
+        gogolePopUp(provider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error =>{
+            console.error(error);
+        })
+    }
+    const githubSingIn = (event) =>{
+        event.preventDefault();
+        githubPopUp(gitProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error =>{
+            console.error(error);
         })
     }
     
@@ -71,8 +97,8 @@ const Register = () => {
         
         <small>Already have an account? <Link to='/login'>Please Login</Link></small>
         <ButtonGroup vertical className='w-100 mt-2'>
-            <Button variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
-            <Button variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
+            <Button onClick={googleSingIn} variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
+            <Button onClick={githubSingIn} variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
         </ButtonGroup>
 
         </div>

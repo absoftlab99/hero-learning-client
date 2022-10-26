@@ -4,9 +4,13 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/UserContext';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
-    const {signInUser, user, setUser, error, setError} = useContext(AuthContext);
+    const {signInUser, user, setUser, error, setError, gogolePopUp, githubPopUp} = useContext(AuthContext);
+
+    const provider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
 
     const signInHandler = event => {
         event.preventDefault();
@@ -26,6 +30,29 @@ const Login = () => {
         .catch(error =>{
             console.error(error);
             setError(error.message);
+        })
+    }
+
+    const googleSingIn = (event) =>{
+        event.preventDefault();
+        gogolePopUp(provider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error =>{
+            console.error(error);
+        })
+    }
+    const githubSingIn = (event) =>{
+        event.preventDefault();
+        githubPopUp(gitProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error =>{
+            console.error(error);
         })
     }
 
@@ -58,8 +85,8 @@ const Login = () => {
         </Form>
         <div className='text-center'><small>New to Hero Learning? <Link to='/register'>Create Account</Link></small></div>
         <ButtonGroup vertical className='w-100 mt-2'>
-            <Button variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
-            <Button variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
+            <Button onClick={googleSingIn} variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
+            <Button onClick={githubSingIn} variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
         </ButtonGroup>
         </div>
     );
