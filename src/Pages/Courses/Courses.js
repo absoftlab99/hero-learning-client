@@ -11,8 +11,10 @@ const Courses = () => {
         <div className='mt-5'>
             <Container>
                 <Row>
-                    <Col lg='4'>
-                        <LeftSideNav></LeftSideNav>
+                    <Col lg='4 category2 border rounded border-success border-opacity-50 p-3 mt-3'>
+                    <h4 className='ff-poppins fw-bolder'>Course List</h4>
+                    <hr></hr>
+                    <LeftSideNav></LeftSideNav>
                     </Col>
                     <Col lg='8'>
                         <Row>

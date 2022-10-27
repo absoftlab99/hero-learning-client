@@ -38,7 +38,7 @@ const Header = () => {
                     <div className='d-flex align-items-center'>
                         {
                             user?.uid ? 
-                            <Image data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" className='ps-3' roundedCircle style={{height:45}} src={user?.photoURL}></Image> :
+                            <Link to='/profile'><Image data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" className='ps-3' roundedCircle style={{height:45}} src={user?.photoURL}></Image></Link> :
                             <FaUserCircle className='display-6 text-warning'></FaUserCircle>
                             
                         }

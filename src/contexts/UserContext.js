@@ -12,6 +12,7 @@ const auth = getAuth(app);
 const UserContext = ({children}) => {
     const [error, setError] = useState('');
     const [user, setUser] = useState(null);
+    const [cate, setCate] = useState(null)
     const createUser = (email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password);
     }
@@ -51,7 +52,14 @@ const UserContext = ({children}) => {
         }
     },[])
 
-    const authInfo = {createUser, signInUser, user, setUser, error, setError,emailVerfy, gogolePopUp, githubPopUp, logOut, updtaeData}
+    useEffect(() =>{
+        fetch('https://hero-learning-server.vercel.app/categories')
+        .then(res => res.json())
+        .then(data => setCate(data));
+
+    })
+
+    const authInfo = {cate, createUser, signInUser, user, setUser, error, setError,emailVerfy, gogolePopUp, githubPopUp, logOut, updtaeData}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

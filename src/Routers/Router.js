@@ -8,6 +8,7 @@ import Error from '../Pages/Error/Error';
 import CourseDetails from '../Pages/CourseDetails/CourseDetails';
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -44,12 +45,21 @@ export const router = createBrowserRouter([
                 loader: ({params}) => fetch(`https://hero-learning-server.vercel.app/course/${params.id}`)
             },
             {
+                path: '/category/:id',
+                element: <Courses></Courses>,
+                loader: ({params}) => fetch(`https://hero-learning-server.vercel.app/category/${params.id}`)
+            },
+            {
                 path: '/register',
                 element: <Register></Register>
             },
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/profile',
+                element: <Profile></Profile>
             },
             {
                 path: '*',

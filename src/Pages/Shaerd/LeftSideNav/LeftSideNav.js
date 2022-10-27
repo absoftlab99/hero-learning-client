@@ -1,31 +1,21 @@
 import React from 'react';
-import { FaReact } from 'react-icons/fa';
+import { useContext } from 'react';
+import { FaDotCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/UserContext';
 import './LeftSideNav.css';
 
 const LeftSideNav = () => {
-    return (
+    const {cate} = useContext(AuthContext)
+    return (    
         <div>
-            <h4 className='ff-poppins fw-bolder'>Course List</h4>
-            <div className="category2 border rounded border-success border-opacity-50 p-3">
-                <div className='px-4 pt-4'>
-                    <button className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaReact className="me-3"></FaReact> React</button>
+            {
+                cate.map(cat =>
+                <div className='px-4 pt-3' key={cat.category_id}>
+                    <Link to={`/category/${cat.category_id}`} className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaDotCircle className="me-3"></FaDotCircle> {cat.category_name}</Link>
                 </div>
-                <div className='px-4 pt-3'>
-                    <button className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaReact className="me-3"></FaReact> React</button>
-                </div>
-                <div className='px-4 pt-3'>
-                    <button className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaReact className="me-3"></FaReact> React</button>
-                </div>
-                    <div className='px-4 pt-3'>
-                        <button className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaReact className="me-3"></FaReact> React</button>
-                    </div>
-                    <div className='px-4 pt-3'>
-                        <button className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaReact className="me-3"></FaReact> React</button>
-                    </div>
-                    <div className='px-4 pt-3 pb-4'>
-                        <button className='btn btn-outline-success w-100 cate fw-bolder text-start py-2'><FaReact className="me-3"></FaReact> React</button>
-                    </div>
-            </div>  
+                )
+            }
         </div>
     );
 };

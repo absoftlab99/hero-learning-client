@@ -7,6 +7,7 @@ import { FaBootstrap, FaCss3, FaHtml5, FaJava, FaPython, FaReact } from 'react-i
 
 const Home = () => {
     const courses = useLoaderData();
+    const courses2 = courses.slice(2, 5);
     return (
         <>
         <div className='cover'>
@@ -52,7 +53,7 @@ const Home = () => {
             <div className="row mt-5">
                 <h2 className='ff-poppins fw-bolder'>Top Courses</h2>
                 {
-                    courses.map(course =>
+                    courses2.map(course =>
                     <div className="col-4" key={course.course_id}>
                         <CourseCard
                         course = {course}
