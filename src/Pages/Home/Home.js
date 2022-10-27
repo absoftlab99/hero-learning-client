@@ -10,6 +10,7 @@ const Home = () => {
     const courses2 = courses.slice(2, 5);
     return (
         <>
+        {/* header iamge and text */}
         <div className='cover'>
             <div className="row m-0">
                 <div className="col-md-6 col-sm-12 pt-5">
@@ -21,6 +22,8 @@ const Home = () => {
                 <div className="col-6"></div>
             </div>
         </div>
+
+        {/* category list  */}
         <div className="container pt-5">
             <h2 className='ff-poppins fw-bolder'>Top Categories</h2>
             <div className='row d-flex justify-content-center gap-5 mt-4 text-success px-2'>
@@ -50,6 +53,7 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* popular course  */}
             <div className="row mt-5">
                 <h2 className='ff-poppins fw-bolder'>Top Courses</h2>
                 {
