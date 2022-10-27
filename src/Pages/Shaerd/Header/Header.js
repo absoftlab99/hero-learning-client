@@ -22,7 +22,7 @@ const Header = () => {
             <Navbar.Brand className='text-light fw-bolder' as={Link} to="/"><img style={{height:40}} src={logo} alt='' /> Hero Learning</Navbar.Brand>  
             <Navbar.Toggle aria-controls="basic-navbar-nav" />  
             <Navbar.Collapse id="basic-navbar-nav">  
-                <Nav className="ms-auto menu">
+                <Nav className="ms-auto menu me-sm-auto">
                     <Nav.Link className='text-light' as={Link} to='/home'>Home</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/courses'>Courses</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/faq'>FAQ</Nav.Link>
@@ -39,12 +39,12 @@ const Header = () => {
                         {
                             user?.uid ? 
                             <Link to='/profile'><Image data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" className='ps-3' roundedCircle style={{height:45}} src={user?.photoURL}></Image></Link> :
-                            <FaUserCircle className='display-6 text-warning'></FaUserCircle>
+                            <FaUserCircle className='display-6 text-warning m-auto'></FaUserCircle>
                             
                         }
                     </div>
                     
-                    <Nav.Link>
+                    <Nav.Link className='mx-auto'>
                     <DayNightToggle
                         onChange={() => setIsDarkMode(!isDarkMode)}
                         checked={isDarkMode}

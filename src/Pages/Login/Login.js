@@ -57,7 +57,8 @@ const Login = () => {
     }
 
     return (
-        <div className='w-25 mx-auto border border-success p-4 rounded mt-5 text-start'>
+        <div className="">
+            <div className='w-25 d-none d-md-block mx-auto border border-success p-4 rounded mt-5 text-start'>
             <Form onSubmit={signInHandler}>
             <h5>Login Form</h5>
             <hr></hr>
@@ -79,15 +80,51 @@ const Login = () => {
                 !error && user ? <p className='alert alert-success'>Login Successfully</p> :
                 ''
             }
-            <Button className='w-100 mb-3' variant="outline-success" type="submit">
+            <Button className='w-100' variant="outline-success" type="submit">
                 Login
             </Button><br></br>
         </Form>
+        <div className='text-center'><small><Link to='/reset-password'>Forget Password</Link></small></div>
         <div className='text-center'><small>New to Hero Learning? <Link to='/register'>Create Account</Link></small></div>
         <ButtonGroup vertical className='w-100 mt-2'>
             <Button onClick={googleSingIn} variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
             <Button onClick={githubSingIn} variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
         </ButtonGroup>
+        </div>
+
+            <div className='w-75 d-sm-block d-md-none mx-auto border border-success p-4 rounded mt-5 text-start'>
+            <Form onSubmit={signInHandler}>
+            <h5>Login Form</h5>
+            <hr></hr>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control className='border-success border-opacity-50' name='email' type="email" placeholder="Enter email" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control className='border-success border-opacity-50' name='password' type="password" placeholder="Password" />
+            </Form.Group>
+            {
+                error ?
+                <p className='alert alert-danger'>{error}</p> :
+                ''
+            }
+            {
+                !error && user ? <p className='alert alert-success'>Login Successfully</p> :
+                ''
+            }
+            <Button className='w-100' variant="outline-success" type="submit">
+                Login
+            </Button><br></br>
+        </Form>
+        <div className='text-center'><small><Link to='/reset-password'>Forget Password</Link></small></div>
+        <div className='text-center'><small>New to Hero Learning? <Link to='/register'>Create Account</Link></small></div>
+        <ButtonGroup vertical className='w-100 mt-2'>
+            <Button onClick={googleSingIn} variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
+            <Button onClick={githubSingIn} variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
+        </ButtonGroup>
+        </div>
         </div>
     );
 };

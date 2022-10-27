@@ -9,6 +9,7 @@ import CourseDetails from '../Pages/CourseDetails/CourseDetails';
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Profile from "../Pages/Profile/Profile";
+import Reset from "../Pages/Login/Reset";
 
 export const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile></Profile>
+            },
+            {
+                path: '/reset-password',
+                element: <Reset></Reset>
             },
             {
                 path: '*',

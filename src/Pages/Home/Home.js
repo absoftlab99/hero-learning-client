@@ -23,29 +23,29 @@ const Home = () => {
         </div>
         <div className="container pt-5">
             <h2 className='ff-poppins fw-bolder'>Top Categories</h2>
-            <div className='row d-flex justify-content-center gap-5 mt-4 text-success'>
-                <div className="col-1 bg-success bg-opacity-25 rounded category">
-                    <FaReact className='display-3 p-3 bg-success bg-opacity-50 rounded-5 mt-2'/>
+            <div className='row d-flex justify-content-center gap-5 mt-4 text-success px-2'>
+                <div className="col-3 bg-success bg-opacity-25 rounded category py-lg-3">
+                    <FaReact className='display-3 p-lg-3 p-2 bg-success bg-opacity-50 rounded-5 mt-2'/>
                     <p className='mt-2 mb-1'>React</p>
                 </div>
-                <div className="col-1 bg-success bg-opacity-25 rounded category">
-                    <FaHtml5 className='display-3 p-3 bg-success bg-opacity-25 rounded-5 mt-2'/>
+                <div className="col-3 bg-success bg-opacity-25 rounded category py-lg-3">
+                    <FaHtml5 className='display-3 p-lg-3 p-2 bg-success bg-opacity-25 rounded-5 mt-2'/>
                     <p className='mt-2 mb-1'>HTML 5</p>
                 </div>
-                <div className="col-1 bg-success bg-opacity-25 rounded category">
-                    <FaCss3 className='display-3 p-3 bg-success bg-opacity-25 rounded-5 mt-2'/>
+                <div className="col-3 bg-success bg-opacity-25 rounded category py-lg-3">
+                    <FaCss3 className='display-3 p-lg-3 p-2 bg-success bg-opacity-25 rounded-5 mt-2'/>
                     <p className='mt-2 mb-1'>CSS 3</p>
                 </div>
-                <div className="col-1 bg-success bg-opacity-25 rounded category">
-                    <FaBootstrap className='display-3 p-3 bg-success bg-opacity-25 rounded-5 mt-2'/>
+                <div className="col-3 bg-success bg-opacity-25 rounded category py-lg-3">
+                    <FaBootstrap className='display-3 p-lg-3 p-2 bg-success bg-opacity-25 rounded-5 mt-2'/>
                     <p className='mt-2 mb-1'>Bootstrap</p>
                 </div>
-                <div className="col-1 bg-success bg-opacity-25 rounded category">
-                    <FaPython className='display-3 p-3 bg-success bg-opacity-25 rounded-5 mt-2'/>
+                <div className="col-3 bg-success bg-opacity-25 rounded category py-lg-3">
+                    <FaPython className='display-3 p-lg-3 p-2 bg-success bg-opacity-25 rounded-5 mt-2'/>
                     <p className='mt-2 mb-1'>Python</p>
                 </div>
-                <div className="col-1 bg-success bg-opacity-25 rounded category">
-                    <FaJava className='display-3 p-3 bg-success bg-opacity-25 rounded-5 mt-2'/>
+                <div className="col-3 bg-success bg-opacity-25 rounded category py-lg-3">
+                    <FaJava className='display-3 p-lg-3 p-2 bg-success bg-opacity-25 rounded-5 mt-2'/>
                     <p className='mt-2 mb-1'>Java</p>
                 </div>
             </div>
@@ -54,7 +54,7 @@ const Home = () => {
                 <h2 className='ff-poppins fw-bolder'>Top Courses</h2>
                 {
                     courses2.map(course =>
-                    <div className="col-4" key={course.course_id}>
+                    <div className="col-lg-4 col-sm-12" key={course.course_id}>
                         <CourseCard
                         course = {course}
                         ></CourseCard>

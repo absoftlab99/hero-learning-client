@@ -1,6 +1,6 @@
 import React from 'react';
 import app from '../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -12,7 +12,6 @@ const auth = getAuth(app);
 const UserContext = ({children}) => {
     const [error, setError] = useState('');
     const [user, setUser] = useState(null);
-    const [cate, setCate] = useState(null)
     const createUser = (email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password);
     }
@@ -43,6 +42,10 @@ const UserContext = ({children}) => {
         });
     }
 
+    const resetPassword = (email) =>{
+        return sendPasswordResetEmail(auth, email)
+    }
+
     useEffect(() =>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser);
@@ -52,14 +55,7 @@ const UserContext = ({children}) => {
         }
     },[])
 
-    useEffect(() =>{
-        fetch('https://hero-learning-server.vercel.app/categories')
-        .then(res => res.json())
-        .then(data => setCate(data));
-
-    })
-
-    const authInfo = {cate, createUser, signInUser, user, setUser, error, setError,emailVerfy, gogolePopUp, githubPopUp, logOut, updtaeData}
+    const authInfo = { createUser, signInUser, user, setUser, error, setError,emailVerfy, gogolePopUp, githubPopUp, logOut, updtaeData, resetPassword}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

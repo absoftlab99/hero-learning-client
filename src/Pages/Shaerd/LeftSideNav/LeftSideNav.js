@@ -1,12 +1,19 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { FaDotCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/UserContext';
 import './LeftSideNav.css';
 
 const LeftSideNav = () => {
-    const {cate} = useContext(AuthContext)
+    const [cate, setCate] = useState([])
+
+    useEffect(() =>{
+        fetch('https://hero-learning-server.vercel.app/categories')
+        .then(res => res.json())
+        .then(data => setCate(data));
+    })
+
     return (    
         <div>
             {
