@@ -1,8 +1,24 @@
-# Getting Started with Create React App
+# Live Website Link:
+Runs the app in the Live mode.\
+Open [https://hero-learning-45b88.web.app](https://hero-learning-45b88.web.app) to view it in your browser.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Technologys:
+    1. Java Script
+    2. React
+    3. HTML 5
+    4. CSS 3
+    5. Bootstrap 5
+    etc...
+
+
+## Course Category:
+    1. Java Script
+    2. React
+    3. HTML 5
+    4. CSS 3
+    5. Bootstrap 5
+    6. Tailwind CSS
 
 In the project directory, you can run:
 
