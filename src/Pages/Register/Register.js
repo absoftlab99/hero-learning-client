@@ -16,6 +16,7 @@
         emailVerfy,
         gogolePopUp,
         githubPopUp,
+        updtaeData
     } = useContext(AuthContext);
 
     const provider = new GoogleAuthProvider();
@@ -32,6 +33,7 @@
         createUser(email, password, name, photo)
         .then((result) => {
             const user = result.user;
+            updtaeData(name, photo);
             setUser(user);
             setError("");
             console.log(user);

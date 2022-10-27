@@ -1,16 +1,26 @@
 import { Link } from 'react-router-dom';
-import {Nav, Navbar, Container, Button, Image} from 'react-bootstrap';
+import {Nav, Navbar, Container, Image} from 'react-bootstrap';
 import logo from '../../../assets/images/logo.png';
 import DayNightToggle from 'react-day-and-night-toggle'
 import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/UserContext';
 import { FaUserCircle } from 'react-icons/fa';
+import { ImExit } from "react-icons/im";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
 
 const Header = () => {
     const {user, logOut} = useContext(AuthContext);
     console.log(user);
     const [isDarkMode, setIsDarkMode] = useState(false);
+
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            {user.displayName}
+        </Tooltip>
+    );
 
     const signOutHandler = () =>{
         logOut();
@@ -28,7 +38,7 @@ const Header = () => {
                     <Nav.Link className='text-light' as={Link} to='/faq'>FAQ</Nav.Link>
                     <Nav.Link className='text-light' as={Link} to='/blog'>Blog</Nav.Link>
                     {
-                        user ? <Button onClick={signOutHandler} variant='danger'>Log Out</Button> :
+                        user ? <Nav.Link onClick={signOutHandler} className='text-danger fw-bolder'><ImExit></ImExit> Log Out</Nav.Link> :
                         <>
                             <Nav.Link className='text-light' as={Link} to='/register'>Register</Nav.Link>
                             <Nav.Link className='text-light' as={Link} to='/login'>Login</Nav.Link>
@@ -38,7 +48,20 @@ const Header = () => {
                     <div className='d-flex align-items-center'>
                         {
                             user?.uid ? 
-                            <Link to='/profile'><Image data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom" className='ps-3' roundedCircle style={{height:45}} src={user?.photoURL}></Image></Link> :
+                            <Link className='m-auto' to='/profile'>
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltip}
+                                >
+                                    <Image
+                                    className="border border-success m-auto me-2"
+                                    style={{ height: "45px", width: "45px" }}
+                                    roundedCircle
+                                    src={user?.photoURL}
+                                    ></Image>
+                                </OverlayTrigger>
+                            </Link> :
                             <FaUserCircle className='display-6 text-warning m-auto'></FaUserCircle>
                             
                         }

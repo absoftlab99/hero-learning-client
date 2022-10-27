@@ -10,6 +10,8 @@ import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Profile from "../Pages/Profile/Profile";
 import Reset from "../Pages/Login/Reset";
+import CourseCheckout from "../Pages/CourseCheckout/CourseCheckout";
+import PrivateRoute from "../Routers/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +45,11 @@ export const router = createBrowserRouter([
             {
                 path: '/course/:id',
                 element: <CourseDetails></CourseDetails>,
+                loader: ({params}) => fetch(`https://hero-learning-server.vercel.app/course/${params.id}`)
+            },
+            {
+                path: '/premium-access/:id',
+                element: <PrivateRoute><CourseCheckout></CourseCheckout></PrivateRoute>,
                 loader: ({params}) => fetch(`https://hero-learning-server.vercel.app/course/${params.id}`)
             },
             {

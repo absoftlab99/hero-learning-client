@@ -1,16 +1,19 @@
 import Form from 'react-bootstrap/Form';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { ButtonGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/UserContext';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     const {signInUser, user, setUser, error, setError, gogolePopUp, githubPopUp} = useContext(AuthContext);
-
+    
     const provider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/home";
+    const navigate = useNavigate();
 
     const signInHandler = event => {
         event.preventDefault();
@@ -22,6 +25,7 @@ const Login = () => {
         .then(result =>{
             const user = result.user;
             setUser(user);
+            navigate(from, { replace: true });
             setError('');
             console.log(user);
             console.log('login successfully');
@@ -38,6 +42,7 @@ const Login = () => {
         gogolePopUp(provider)
         .then(result => {
             const user = result.user;
+            navigate(from, { replace: true });
             console.log(user);
         })
         .catch(error =>{
@@ -49,6 +54,7 @@ const Login = () => {
         githubPopUp(gitProvider)
         .then(result => {
             const user = result.user;
+            navigate(from, { replace: true });
             console.log(user);
         })
         .catch(error =>{
